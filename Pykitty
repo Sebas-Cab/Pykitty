@@ -3,6 +3,15 @@ import argparse as argp
 from utils.functions import *
 import sys
 
+pykitty_dir = os.path.realpath(__file__).strip("Pykitty")
+
+if "fav.txt" not in os.listdir(pykitty_dir):
+    os.system("touch " + pykitty_dir + "/fav.txt")
+    with open(pykitty_dir + "/fav.txt", "a") as f:
+        for theme in os.listdir(themes_path):
+            if theme.endswith(".conf"):
+                f.write(theme[:-5] + " " + "0\n")
+
 if __name__ == "__main__":
     parser = argp.ArgumentParser(description="Kitty theme manager")
     parser.add_argument("-t","--theme", help="Set theme", metavar="")
@@ -43,3 +52,7 @@ if __name__ == "__main__":
         parser.print_help()
     
     os.system("kitty @ set-colors --all " + user_path + "/.config/kitty/kitty.conf")
+
+
+
+#s
