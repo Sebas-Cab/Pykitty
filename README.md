@@ -7,4 +7,7 @@ Pykitty is a command line interface to customize the kitty terminal configuratio
 | ----------------------------------- | ------------------------------------ |
 | -t or --theme                       | Change the theme in use              |
 | -f or --font                        | Change the font in use               |
-| -m or --margin                      | Change the margin of terminal        |
+| -fs or --fontsize                   | Change the font size                 |
+| -m or --margin                      | Change the margin                    |
+| -lt or --list-themes                | List the available themes            |
+| -lf or --list-fav                   | List the most used themes            |
