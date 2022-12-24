@@ -1,0 +1,45 @@
+#!/usr/bin/python3
+import argparse as argp
+from utils.functions import *
+import sys
+
+if __name__ == "__main__":
+    parser = argp.ArgumentParser(description="Kitty theme manager")
+    parser.add_argument("-t","--theme", help="Set theme", metavar="")
+    parser.add_argument("-f","--font", help="Set font", metavar="")
+    parser.add_argument("-fs","--fontsize", help="Set font size", metavar="")
+    parser.add_argument("-lt","--list-themes", help="List themes",action="store_true")
+    parser.add_argument("-lf","--list-fav", help="List favorite themes",action="store_true")
+    parser.add_argument("-m","--margin", help="Set Margin",metavar="")
+    args = parser.parse_args()
+
+    if args.theme:
+        new_theme = args.theme
+        n_theme_path = themes_path + "/" + new_theme + ".conf"
+        set_theme(new_theme,n_theme_path)
+
+    elif args.font:
+        new_font = args.font
+        set_font(new_font)
+
+    elif args.fontsize:
+        new_font_size = args.fontsize
+        set_font_size(new_font_size)
+    
+    elif args.list_themes:
+        print("Available themes:")
+        for n in os.listdir(themes_path):
+            if n.endswith(".conf"):
+                print(n[:-5], end="\n")
+    elif args.list_fav:
+        print("Favorite themes:")
+        favorites("themes")
+    
+    elif args.margin:
+        new_margin = args.margin
+        set_margin(new_margin)
+
+    elif len(sys.argv) == 1:
+        parser.print_help()
+    
+    os.system("kitty @ set-colors --all " + user_path + "/.config/kitty/kitty.conf")
