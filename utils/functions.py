@@ -4,10 +4,13 @@ import os
 
 
 user_path = str(os.path.expanduser('~'))
+pykitty_dir = os.path.realpath(__file__).replace("utils/functions.py",'')
+
+
 fonts = ["Cascadia Code", "FiraCode","UbuntuMono NerdFont"]
 themes_path = user_path + "/.config/kitty/themes" 
 config_path = user_path + "/.config/kitty"
-man_path = user_path + "/workspace/programming/Pykitty/README"
+man_path = pykitty_dir + "/README"
 
 
 
@@ -37,7 +40,7 @@ def set_theme(new_theme,n_theme_path):
     config.close()
     g.close()
 
-    with open( user_path + "/workspace/programming/Pykitty/CLI/fav.txt", "r") as f:
+    with open( pykitty_dir + "/fav.txt", "r") as f:
         fav_lines = f.readlines()
     with open("fav.txt", "w") as f:
         for i in range(len(fav_lines)):
